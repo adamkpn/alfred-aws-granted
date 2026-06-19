@@ -1,0 +1,27 @@
+# Binaries and symlinks (built locally; released via GitHub Actions)
+/alfred-aws-granted
+/alfred-aws-granted-*
+/aws-granted-*
+
+# Build output
+/build/
+*.alfredworkflow
+
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
+
+# macOS
+.DS_Store
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
