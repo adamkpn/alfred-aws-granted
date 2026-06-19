@@ -160,7 +160,7 @@
 		</array>
 	</dict>
 	<key>createdby</key>
-	<string>kapal0ne</string>
+	<string>adamkpn</string>
 	<key>description</key>
 	<string>Use Granted to open AWS Console with fuzzy profile and service search</string>
 	<key>disabled</key>
@@ -596,6 +596,6 @@
 	<key>version</key>
 	<string>1.0.1</string>
 	<key>webaddress</key>
-	<string>https://github.com/sherifabdlnaby/alfred-aws-granted</string>
+	<string>https://github.com/adamkpn/alfred-aws-granted</string>
 </dict>
 </plist>
