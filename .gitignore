@@ -19,6 +19,7 @@ go.work
 
 # macOS
 .DS_Store
+_CodeSignature/
 
 # IDE
 .idea/
