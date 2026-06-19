@@ -33,6 +33,15 @@ brew install granted
 
 1. Download the latest `alfred-granted-v*.alfredworkflow` from [Releases](https://github.com/adamkpn/alfred-aws-granted/releases).
 2. Double-click the file to import it into Alfred.
+3. **macOS Gatekeeper:** the workflow includes a compiled binary. After importing, remove the download quarantine once:
+   - Alfred → Preferences → Workflows → **AWS Granted** → **⋮** → **Open in Finder**
+   - In Terminal, from that folder:
+
+```bash
+./scripts/trust-workflow.sh
+```
+
+   Or manually: `xattr -cr .` in the workflow folder opened from Alfred.
 
 ### From source
 
@@ -61,6 +70,17 @@ Link the workflow directory in Alfred Preferences for live development.
 2. Fuzzy-search your AWS profile and press Return.
 3. Pick a service, or use **⌘** to open the console home directly.
 4. Use **⌥** on the profile step to choose a region.
+
+## macOS Gatekeeper
+
+If Alfred shows *"Apple could not verify aws-granted-profiles is free of malware"*, macOS is blocking the unsigned workflow binary downloaded from GitHub. This is expected for open-source Alfred workflows without Apple notarization.
+
+**Fix (one time per install):**
+
+1. Alfred → Preferences → Workflows → **AWS Granted** → **⋮** → **Open in Finder**
+2. Run `./scripts/trust-workflow.sh` in Terminal from that folder
+
+Alternatively, build and install from source — locally built binaries are not quarantined.
 
 ## Releasing
 

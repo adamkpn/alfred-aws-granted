@@ -1,9 +1,16 @@
-.PHONY: build test lint clean workflow icons
+.PHONY: build test lint clean workflow icons sign
 
 BINARY := alfred-aws-granted
 CMD := ./cmd/alfred-aws-granted
 VERSION ?= 1.0.1
 LINKS := aws-granted-profiles aws-granted-services aws-granted-regions aws-granted-open
+CODESIGN_IDENTITY ?= -
+CODESIGN_FLAGS := --force --sign "$(CODESIGN_IDENTITY)"
+ifeq ($(CODESIGN_IDENTITY),-)
+CODESIGN_FLAGS += --timestamp=none
+else
+CODESIGN_FLAGS += --options runtime --timestamp
+endif
 
 icons:
 	chmod +x scripts/generate-icons.sh
@@ -15,8 +22,12 @@ build: icons
 	lipo -create -output $(BINARY) $(BINARY)-arm64 $(BINARY)-amd64
 	rm -f $(BINARY)-arm64 $(BINARY)-amd64
 	chmod +x $(BINARY)
+	$(MAKE) sign
 	@for link in $(LINKS); do ln -sf $(BINARY) $$link; done
 	chmod +x scripts/*.sh
+
+sign:
+	codesign $(CODESIGN_FLAGS) $(BINARY)
 
 test:
 	go test ./...
@@ -33,6 +44,7 @@ workflow: build
 	sed 's/1\.0\.1/$(VERSION)/g' info.plist > build/info.plist
 	cd build && \
 		cp ../$(BINARY) . && \
+		codesign $(CODESIGN_FLAGS) $(BINARY) && \
 		cp ../icon.png ../region.png . && \
 		cp -r ../icons . && \
 		for link in $(LINKS); do ln -sf $(BINARY) $$link; done && \
