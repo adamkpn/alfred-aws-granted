@@ -2,10 +2,15 @@ package profiles
 
 import (
 	"os"
+	"runtime"
 	"testing"
 )
 
 func TestHomeFromDSCL(t *testing.T) {
+	if runtime.GOOS != "darwin" {
+		t.Skip("homeFromDSCL uses macOS dscl")
+	}
+
 	home := homeFromDSCL()
 	if home == "" {
 		t.Fatal("homeFromDSCL() returned empty string")
