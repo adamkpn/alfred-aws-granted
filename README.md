@@ -40,7 +40,7 @@ Requires Go 1.22+, ImageMagick (`brew install imagemagick`), and macOS (for univ
 
 ```bash
 make workflow
-open build/alfred-granted-v2.0.8.alfredworkflow
+open build/alfred-granted-v1.0.1.alfredworkflow
 ```
 
 ### Development
@@ -67,8 +67,8 @@ Link the workflow directory in Alfred Preferences for live development.
 Push a semver tag to trigger the release workflow, which builds the `.alfredworkflow` on macOS and attaches it to a GitHub Release:
 
 ```bash
-git tag v2.0.9
-git push origin v2.0.9
+git tag v1.0.1
+git push origin v1.0.1
 ```
 
 Binaries and build artifacts are **not** committed — they are produced in CI and published as release assets only.

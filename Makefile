@@ -2,7 +2,7 @@
 
 BINARY := alfred-aws-granted
 CMD := ./cmd/alfred-aws-granted
-VERSION ?= 2.0.8
+VERSION ?= 1.0.1
 LINKS := aws-granted-profiles aws-granted-services aws-granted-regions aws-granted-open
 
 icons:
@@ -30,7 +30,7 @@ clean:
 workflow: build
 	rm -rf build
 	mkdir -p build
-	sed 's/2\.0\.8/$(VERSION)/g' info.plist > build/info.plist
+	sed 's/1\.0\.1/$(VERSION)/g' info.plist > build/info.plist
 	cd build && \
 		cp ../$(BINARY) . && \
 		cp ../icon.png ../region.png . && \
